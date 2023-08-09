@@ -45,11 +45,12 @@ class _CryptoPricePageState extends State<CryptoPricePage> {
                 fillColor: greenColor,
                 filled: true,
                 border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                      width: 0,
-                      style: BorderStyle.none,
-                    )),
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: const BorderSide(
+                    width: 0,
+                    style: BorderStyle.none,
+                  ),
+                ),
               ),
               style: const TextStyle(fontSize: 18),
               onChanged: (value) {
@@ -91,7 +92,11 @@ class _CryptoPricePageState extends State<CryptoPricePage> {
     return ListTile(
       title: Text(
         crypto.name,
-        style: const TextStyle(color: greenColor, fontSize: 18),
+        style: TextStyle(
+          color: (crypto.changePercent24Hr.isNegative) ? redColor : greenColor,
+          fontSize: 18,
+          overflow: TextOverflow.ellipsis,
+        ),
       ),
       subtitle: Text(
         crypto.symbol,
@@ -115,11 +120,11 @@ class _CryptoPricePageState extends State<CryptoPricePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                crypto.priceUsd.toStringAsFixed(3),
+                '${crypto.priceUsd.toStringAsFixed(5)} \$',
                 style: const TextStyle(color: greyColor, fontSize: 16),
               ),
               Text(
-                crypto.changePercent24Hr.toStringAsFixed(3),
+                '${crypto.changePercent24Hr.toStringAsFixed(5)} %',
                 style: TextStyle(color: _getPriceColor(crypto.changePercent24Hr), fontSize: 15),
               ),
             ],
