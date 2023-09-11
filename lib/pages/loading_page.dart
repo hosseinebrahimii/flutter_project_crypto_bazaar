@@ -45,13 +45,16 @@ class _LoadingPageState extends State<LoadingPage> {
     List<Crypto> cryptoList = response.data['data'].map<Crypto>((jsonMap) => Crypto.getFromJsonMap(jsonMap)).toList();
 
     if (context.mounted) {
-      Navigator.push(
+      Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
           builder: (context) => CryptoPricePage(
             cryptoList: cryptoList,
           ),
         ),
+        (route) {
+          return false;
+        },
       );
     }
   }
