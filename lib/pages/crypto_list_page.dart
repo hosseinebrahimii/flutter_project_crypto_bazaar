@@ -64,6 +64,7 @@ class _CryptoPricePageState extends State<CryptoPricePage> {
               color: blackColor,
               onRefresh: _getData,
               child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
                 itemBuilder: ((context, index) {
                   return _getListTile(cryptoList![index]);
                 }),
